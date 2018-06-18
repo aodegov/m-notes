@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/Scripts/DataTables/js")
+    @Styles.Render("~/Content/DataTables/css")
+    @Scripts.Render("~/bundles/Scripts")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div id="summary_menu">
+                <div class="navbar-header">
+                    <a href="@Url.Action("Summary", "Notes", null)">
+                        <img src="~/Content/Icons/logo.png" style="vertical-align: middle;" class="navbar-brand">
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Notes", "Summary", "Notes")</li>
+                        <li>@Html.ActionLink("Setup", "Setup", "Notes")</li>
+                    </ul>
+                    <div id="export_btns"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <div class="footer">
+        <i style="font-size:small">Copyright &copy; @DateTime.Now.Year Beacon Review, LLC. All rights reserved. (v. @typeof(MedNotes.MvcApplication).Assembly.GetName().Version)</i>
+    </div>
+</body>
+</html>

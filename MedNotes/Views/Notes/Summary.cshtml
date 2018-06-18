@@ -1,0 +1,155 @@
+﻿@{
+    ViewBag.Title = "Summary";
+}
+
+<div style="margin-top: 1%">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2 class="panel-title">Filter</h2>
+            <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+        </div>
+        <div class="panel-body">
+
+            <div style="margin-top:1%;">
+
+                <div style="float:right;" class="form-group">
+
+                    <input type="checkbox" name="all-checkbox" id="all-checkbox" autocomplete="off" checked />
+                    <div class="[ btn-group ]" style="margin-left:5px">
+                        <label for="all-checkbox" class="[ ext_btn btn btn-default ]">
+                            <span class="[ glyphicon glyphicon-ok ]"></span>
+                            <span> </span>
+                        </label>
+                        <label for="all-checkbox" class="[ ext_btn btn btn-default]">
+                            All
+                        </label>
+                    </div>
+                    <input type="checkbox" name="not-processed-checkbox" id="not-processed-checkbox" autocomplete="off" checked />
+                    <div class="[ btn-group ]" style="margin-left:5px">
+                        <label for="not-processed-checkbox" class="[ ext_btn btn btn-danger ]" id="not-processed-btn">
+                            <span class="[ glyphicon glyphicon-ok ]"></span>
+                            <span> </span>
+                        </label>
+                        <label for="not-processed-checkbox" class="[ ext_btn btn btn-default]">
+                            Not processed
+                        </label>
+                    </div>
+                    <input type="checkbox" name="found-dx-checkbox" id="found-dx-checkbox" autocomplete="off" checked />
+                    <div class="[ btn-group ]" style="margin-left:5px">
+                        <label for="found-dx-checkbox" class="[ ext_btn btn btn-info ]">
+                            <span class="[ glyphicon glyphicon-ok ]"></span>
+                            <span> </span>
+                        </label>
+                        <label for="found-dx-checkbox" class="[ ext_btn btn btn-default]">
+                            New found Dx
+                        </label>
+                    </div>
+                    <input type="checkbox" name="in-progress-checkbox" id="in-progress-checkbox" autocomplete="off" checked />
+                    <div class="[ btn-group ]" style="margin-left:5px">
+                        <label for="in-progress-checkbox" class="[ ext_btn btn btn-primary ]">
+                            <span class="[ glyphicon glyphicon-ok ]"></span>
+                            <span> </span>
+                        </label>
+                        <label for="in-progress-checkbox" class="[ ext_btn btn btn-default]">
+                            In progress
+                        </label>
+                    </div>
+                    <input type="checkbox" name="fancy-checkbox-success" id="fancy-checkbox-success" autocomplete="off" checked />
+                    <div class="[ btn-group ]" style="margin-left:5px">
+                        <label for="fancy-checkbox-success" class="[ ext_btn btn btn-success ]">
+                            <span class="[ glyphicon glyphicon-ok ]"></span>
+                            <span> </span>
+                        </label>
+                        <label for="fancy-checkbox-success" class="[ ext_btn btn btn-default]">Complete</label>
+                    </div>
+
+                </div>
+
+                <div style="float:left; margin-left: 10px">
+                    <select id='clients_ddl' class='form-control frm_ctrl_w_extend' data-live-search='true' title="Select client ....."></select>
+                </div>
+
+                
+
+            </div>
+
+            <div style="float:right; margin-top:5px">
+
+                <div class='col-md-2-copy'>
+                    <div class="form-group">
+                        <div class='input-group date' id='dateTo'>
+                            <input type='text' class="form-control" placeholder="MM/DD/YYYY" id='dateToVal' />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <label style="float: right; margin-left: 20px; margin-top:5px">To:</label>
+
+                <div class='col-md-2-copy'>
+                    <div class="form-group">
+
+                        <div class='input-group date' id='dateFrom'>
+                            <input type='text' class="form-control" placeholder="MM/DD/YYYY" id='dateFromVal' />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <label style="float: right; margin-top:5px">From:</label>
+
+                <div id="sumTable_filter" class="dataTables_filter" style="float:left; margin-left:10px;">
+                    <div class="icon-addon addon-sm">
+                        <input type="search" id="searchVal" class="form-control frm_ctrl_w_extend" placeholder="Person name or MRN..." aria-controls="sumTable">
+                        <label for="search" class="glyphicon glyphicon-search" rel="tooltip"></label>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div style="margin-top:1%; margin-bottom:2%">
+    <table id="sumTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Status</th>
+                <th>MRN</th>
+                <th>Person name</th>
+                <th>DOB (Age)</th>
+                <th>Note type</th>
+                <th>Note date</th>
+                <th>Provider name</th>
+                <th style="background-position-x: 12px">Found</th>
+                <th style="background-position-x: 12px">Accepted</th>
+                <th style="background-position-x: 12px">Rejected</th>
+                <th style="background-position-x: 12px">Added</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<script src="~/Scripts/Notes/summary.js"></script>
+
+<div id="queryGetSummary" data-request-url="@Url.Action("GetSummaryData", "Data")"></div>
+<div id="queryDetails" data-request-url='@Url.Action("Details", "Notes", new {note_id = "_id_"})'></div>
+<div id="queryGetClientsData" data-request-url="@Url.Action("GetClientsData", "Data")"></div>
+
+@*// Nested tbl icons*@
+<div id="queryCompleteOpen" data-request-url='@Url.Content("~/Content/DataTables/images/nested_complete.png")'></div>
+<div id="queryCompleteClose" data-request-url='@Url.Content("~/Content/DataTables/images/nested_complete_close.png")'></div>
+<div id="queryInProgressOpen" data-request-url='@Url.Content("~/Content/DataTables/images/nested_In_progress.png")'></div>
+<div id="queryInProgressClose" data-request-url='@Url.Content("~/Content/DataTables/images/nested_In_progress_close.png")'></div>
+<div id="queryFoundOpen" data-request-url='@Url.Content("~/Content/DataTables/images/nested_found.png")'></div>
+<div id="queryFoundClose" data-request-url='@Url.Content("~/Content/DataTables/images/nested_found_close.png")'></div>
+<div id="queryNotProcOpen" data-request-url='@Url.Content("~/Content/DataTables/images/nested_Not_processed.png")'></div>
+<div id="queryNotProcClose" data-request-url='@Url.Content("~/Content/DataTables/images/nested_Not_processed_close.png")'></div>

@@ -1,0 +1,202 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/Scripts/DataTables/js")
+    @Styles.Render("~/Content/DataTables/css")
+    @Scripts.Render("~/bundles/Scripts")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div id="details_menu">
+                <form>
+                    <div class="form-group frm_grp_extend col-xs-1 col-md-1">
+                        <input type="text" hidden id="patient_id">
+                        <label for="mrn" class="control-label" style="color:aliceblue">MRN</label>
+                        <input type="text" value='' class="form-control frm_ctrl_h_extend" id="mrn" placeholder="MRN" disabled>
+                    </div>
+                    <div class="form-group frm_grp_extend col-xs-3 col-md-3">
+                        <label for="person" class="control-label" style="color:aliceblue">Person</label>
+                        <input type="text" value='' class="form-control frm_ctrl_h_extend" id="person" placeholder="Person" disabled>
+                    </div>
+                    <div class="form-group frm_grp_extend col-xs-1 col-md-1">
+                        <label for="dob" class="control-label" style="color:aliceblue">DOB</label>
+                        <input type="text" value='' class="form-control frm_ctrl_h_extend" id="dob" placeholder="DOB" disabled>
+                    </div>
+                    <div class="form-group frm_grp_extend col-xs-1 col-md-1">
+                        <label for="age" class="control-label" style="color:aliceblue">Age</label>
+                        <input type="text" value='' class="form-control frm_ctrl_h_extend" id="age" placeholder="Age" disabled>
+                    </div>
+                    <div class="form-group frm_grp_extend col-xs-1 col-md-1">
+                        <label for="gender" class="control-label" style="color:aliceblue">Gender</label>
+                        <input type="text" value='' class="form-control frm_ctrl_h_extend" id="gender" placeholder="Gender" disabled>
+                    </div>
+                    <div class="form-group frm_grp_extend col-xs-2 col-md-2">
+                        <label for="race" class="control-label" style="color:aliceblue">Race</label>
+                        <input type="text" value='' class="form-control frm_ctrl_h_extend" id="race" placeholder="Race" disabled>
+                    </div>
+                    <div class="form-group frm_grp_extend col-xs-3 col-md-2">
+                        <label for="provider" class="control-label" style="color:aliceblue">Provider name</label>
+                        <input type="text" value='' class="form-control frm_ctrl_h_extend" id="provider" placeholder="Provider" disabled>
+                    </div>
+                    <div class="form-group frm_grp_extend col-xs-1 col-md-1">
+                        <label for="note_date" class="control-label" style="color:aliceblue">Note Date</label>
+                        <input type="text" value='' class="form-control frm_ctrl_h_extend" id="note_date" placeholder="Note Date" disabled>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+
+        <div class="container" style="margin-top:2%">
+
+            <input hidden id="noteId" data-value="@ViewBag.NoteId" />
+            <input hidden type="text" class="input-sm" id="linkTxt" />
+
+            <div style="float:left; width:50%;">
+                <div style="height:3vh;" class="input-group add-on">
+                    <input type="text" class="form-control" style="height:34px" placeholder="Search text in all documents....." name="srch-term" id="srch_val">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit" id="btn_doc_search"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+                <div style="height:79vh; border:outset 1.8px">
+                    <iframe src='@Url.Action("ViewFile", "Files", new {note_id = ViewBag.NoteId})' id="frame" style="width:100%; height:95%; border:outset 1px"></iframe>
+                    <img src="~/Content/Icons/Dx_colors.png" alt="legend" style="width:55%; height:3.1%; border:outset 1px" />
+                </div>
+            </div>
+
+            <div style="float:right; width:50%; height: 82vh; padding-left:5px; overflow: scroll; overflow-x: hidden; border:outset 1.8px">
+
+                <table id="tbl_NLP_Diagnosis" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th id="Status" class="padding_nlp_th_ext" style="width:18%;">Status</th>
+                            <th id="Confidence" class="padding_nlp_th_ext" style="width:82%;">
+                                <span class="fakeCell_conf">Confidence</span><span class="fakeCell_icd10">&nbsp;&nbsp;ICD10</span><span class="fakeCell_descr">&nbsp;Description</span>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+
+                <div>
+                    <b style="float:left;">
+                        Added Diagnosis
+                    </b>
+                    <table style="margin-top:3px;" id="tbl_User_Diagnosis" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="padding_nlp_th_ext" id="ICD10">ICD10 / Description</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top:1%; margin-bottom:1%">
+            <div style="margin-left:36%">
+                <div style="display: inline-block;">
+                    <input type="checkbox" name="fancy-checkbox-success" id="fancy-checkbox-success" autocomplete="off" checked />
+                    <div class="[ btn-group ]">
+                        <label for="fancy-checkbox-success" class="[ ext_btn btn btn-success ]">
+                            <span class="[ glyphicon glyphicon-ok ]"></span>
+                            <span> </span>
+                        </label>
+                        <label for="fancy-checkbox-success" class="[ ext_btn btn btn-default]">Complete</label>
+                    </div>
+                </div>
+                <button id="btnOK" class="btn btn-primary" type="button">Save</button>
+                <button id="btnCancel" class="btn" type="button">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="modal fade" id="DescModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="txt_header" class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row dataTable padding_nlp_th_ext">
+                        <textarea id="txt_area" rows="3" cols="150"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+
+    <div class="modal fade" id="DocsModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="docs_txt_header" class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <table id="tbl_patient_files" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>File</th>
+                                <th>Date</th>
+                                <th>Entries</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <script src="~/Scripts/Notes/Details.js"></script>
+
+    <div id="queryGetICD10" data-request-url="@Url.Action("GetICD10Data", "Data")"></div>
+    <div id="saveDataOnServer" data-request-url="@Url.Action("SaveData", "Data")"></div>
+    <div id="queryGetNLPData" data-request-url="@Url.Action("GetNLPData", "Data")"></div>
+    <div id="queryGetUnidentifiedData" data-request-url="@Url.Action("GetUnidentifiedData", "Data")"></div>
+    <div id="GoToSummary" data-request-url="@Url.Action("Summary", "Notes")"></div>
+    <div id="queryGetPersonData" data-request-url="@Url.Action("GetPersonData", "Data")"></div>
+    <div id="searchInHtmlFiles" data-request-url="@Url.Action("SearchValueInHtmlFiles", "Files")"></div>
+    <div id="queryDetails" data-request-url='@Url.Action("Details", "Notes", new {note_id = "_id_"})'></div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+

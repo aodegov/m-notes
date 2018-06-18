@@ -1,0 +1,282 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    overflow: auto;
+    overflow-y: scroll;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 30px;
+    border-top: 1px solid black;
+    z-index: 0;
+    background-color: #314556;
+    color: white;
+    padding-left: 125px;
+}
+
+.col-md-2-copy {
+    width: 14%;
+    float: right;
+    margin-left: 7px;
+}
+
+.form-group input[type="checkbox"] {
+    display: none;
+}
+
+    .form-group input[type="checkbox"] + .btn-group > label span {
+        width: 12px;
+    }
+
+        .form-group input[type="checkbox"] + .btn-group > label span:first-child {
+            display: none;
+        }
+
+        .form-group input[type="checkbox"] + .btn-group > label span:last-child {
+            display: inline-block;
+        }
+
+    .form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
+        display: inline-block;
+    }
+
+    .form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
+        display: none;
+    }
+
+.clickable {
+    cursor: pointer;
+}
+
+.panel-heading span {
+    margin-top: -20px;
+    font-size: 15px;
+}
+
+td.details-control {
+    /*background: url('../Content/DataTables/images/nested_In_progress.png') no-repeat center center;*/
+    cursor: pointer;
+}
+
+tr.shown td.details-control {
+    /*background: url('../Content/DataTables/images/details_close.png') no-repeat center center;*/
+}
+
+
+.center-block {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-group .icon-addon .form-control {
+    border-radius: 0;
+}
+
+.icon-addon {
+    position: relative;
+    color: #555;
+    display: block;
+}
+
+    .icon-addon:after,
+    .icon-addon:before {
+        display: table;
+        content: " ";
+    }
+
+    .icon-addon:after {
+        clear: both;
+    }
+
+    .icon-addon.addon-md .glyphicon,
+    .icon-addon .glyphicon,
+    .icon-addon.addon-md .fa,
+    .icon-addon .fa {
+        position: absolute;
+        z-index: 2;
+        left: 10px;
+        font-size: 14px;
+        width: 20px;
+        margin-left: -2.5px;
+        text-align: center;
+        padding: 10px 0;
+        top: 1px;
+    }
+
+    .icon-addon.addon-lg .form-control {
+        line-height: 1.33;
+        height: 46px;
+        font-size: 18px;
+        padding: 10px 16px 10px 40px;
+    }
+
+    .icon-addon.addon-sm .form-control {
+        /*height: 35px;*/
+        padding: 5px 10px 5px 30px;
+        /*font-size: 15px;*/
+        line-height: 1.5;
+    }
+
+    .icon-addon.addon-lg .fa,
+    .icon-addon.addon-lg .glyphicon {
+        font-size: 20px;
+        margin-left: 0;
+        left: 11px;
+        top: 4px;
+    }
+
+    .icon-addon.addon-md .form-control,
+    .icon-addon .form-control {
+        padding-left: 30px;
+        float: left;
+        font-weight: normal;
+    }
+
+    .icon-addon.addon-sm .fa,
+    .icon-addon.addon-sm .glyphicon {
+        margin-left: 0;
+        left: 5px;
+        top: -1px;
+    }
+
+    .icon-addon .form-control:focus + .glyphicon,
+    .icon-addon:hover .glyphicon,
+    .icon-addon .form-control:focus + .fa,
+    .icon-addon:hover .fa {
+        color: #2580db;
+    }
+
+#export_btns {
+    float: right;
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+#sumTable tbody td {
+    padding: 5px 8px;
+}
+
+.table .inner_tbl_ext {
+    width: 90%;
+    margin-left: 3%
+}
+
+.select_ext {
+    /*min-width: 50px;*/
+    /*max-width: 370px;*/
+    width: 80% !important;
+  
+}
+
+.input_margin_ext {
+    margin-top: 3px!important;
+    margin-bottom: 3px!important;
+}
+
+.btn_margin_ext {
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+    margin-left:3px!important;
+    height:33px!important;
+}
+
+.column_ext_left {
+    /*margin-top: 2px !important;*/
+    /*margin-bottom: 2px !important;*/
+    margin-left: 5% !important;
+}
+.column_ext_right {
+    /*margin-top: 2px !important;*/
+    /*margin-bottom: 2px !important;*/
+    margin-right: 5% !important;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #dedede;
+}
+
+.border_ext {
+    border: solid 1px black!important;
+}
+
+    .border_ext .table > tbody > tr > td, .table > tr > td {
+        border: solid 1px black !important;
+    }
+
+.fakeCell_conf {
+    display: inline-block;
+    width: 20%;
+}
+
+.fakeCell_icd10 {
+    display: inline-block;
+    width: 15%;
+}
+
+.fakeCell_descr {
+    display: inline-block;
+    width: 65%;
+}
+
+.padding_nlp_th_ext {
+    padding: 5px 5px 5px 7px!important;
+}
+
+.btn_show_ext {
+    font-weight:bold;
+    font-size:medium;
+    color:darkblue;
+}
+
+.btn-group > .ext_btn {
+    height: inherit !important;
+    /*border: 1px !important;*/
+    border-radius: 3px !important;
+    padding: 3px 7px;
+}
+
+.noselect {
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
