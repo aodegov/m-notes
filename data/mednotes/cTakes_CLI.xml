@@ -18,7 +18,7 @@
     <casProcessors casPoolSize="3" processingUnitThreadCount="1">
     <casProcessor deployment="integrated" name="AggregatePlaintextUMLSProcessor">
         <descriptor>
-            <import location="../desc/ctakes-clinical-pipeline/analysis_engine/AggregatePlaintextUMLSProcessor.xml"/>
+            <import location="../desc/ctakes-clinical-pipeline/desc/analysis_engine/AggregatePlaintextUMLSProcessor.xml"/>
         </descriptor>
             <deploymentParameters/>
         <errorHandling>
