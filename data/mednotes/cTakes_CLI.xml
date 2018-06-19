@@ -16,38 +16,58 @@
         </collectionIterator>
     </collectionReader>
     <casProcessors casPoolSize="3" processingUnitThreadCount="1">
-    <casProcessor deployment="integrated" name="AggregatePlaintextUMLSProcessor">
-        <descriptor>
-            <import location="../desc/ctakes-clinical-pipeline/desc/analysis_engine/AggregatePlaintextUMLSProcessor.xml"/>
-        </descriptor>
-            <deploymentParameters/>
-        <errorHandling>
-            <errorRateThreshold action="terminate" value="0/1000"/>
-            <maxConsecutiveRestarts action="terminate" value="30"/>
-            <timeout max="100000" default="-1"/>
-        </errorHandling>
-        <checkpoint batch="10000" time="1000ms"/>
-    </casProcessor>
-    <casProcessor deployment="integrated" name="Write CAS to XML file">
-        <descriptor>
-            <import location="../desc/ctakes-core/desc/cas_consumer/FileWriterCasConsumer.xml"/>
-        </descriptor>
-            <deploymentParameters/>
-        <errorHandling>
-            <errorRateThreshold action="terminate" value="0/1000"/>
-            <maxConsecutiveRestarts action="terminate" value="30"/>
-            <timeout max="100000" default="-1"/>
-        </errorHandling>
-        <checkpoint batch="10000" time="1000ms"/>
-        <configurationParameterSettings>
-            <nameValuePair>
-                <name>outputDir</name>
-                <value>
-                    <string>C:\temp\MedNotes\output_cTakes_xml</string>
-                </value>
-            </nameValuePair>
-        </configurationParameterSettings>
-    </casProcessor>
+      <casProcessor deployment="integrated" name="AggregatePlaintextUMLSProcessor">
+          <descriptor>
+              <import location="../desc/ctakes-clinical-pipeline/desc/analysis_engine/AggregatePlaintextUMLSProcessor.xml"/>
+          </descriptor>
+		      <deploymentParameters/>
+          <errorHandling>
+              <errorRateThreshold action="terminate" value="0/1000"/>
+              <maxConsecutiveRestarts action="terminate" value="30"/>
+              <timeout max="100000" default="-1"/>
+          </errorHandling>
+          <checkpoint batch="10000" time="1000ms"/>
+      </casProcessor>
+      <casProcessor deployment="integrated" name="SecionSplitter">
+          <descriptor>
+              <import location="./BsvSegmentAnnotator.xml"/>
+          </descriptor>
+          <configurationParameterSettings>
+              <nameValuePair>
+                  <name>SectionsBsv</name>
+                  <value>
+                      <string>org/apache/ctakes/core/sections/DefaultSectionRegex.bsv</string>
+                  </value>
+              </nameValuePair>
+          </configurationParameterSettings>
+          <deploymentParameters/>
+          <errorHandling>
+              <errorRateThreshold action="terminate" value="0/1000"/>
+              <maxConsecutiveRestarts action="terminate" value="30"/>
+              <timeout max="100000" default="-1"/>
+          </errorHandling>
+          <checkpoint batch="10000" time="1000ms"/>
+      </casProcessor>
+      <casProcessor deployment="integrated" name="Write CAS to XML file">
+          <descriptor>
+              <import location="../desc/ctakes-core/desc/cas_consumer/FileWriterCasConsumer.xml"/>
+          </descriptor>
+              <deploymentParameters/>
+          <errorHandling>
+              <errorRateThreshold action="terminate" value="0/1000"/>
+              <maxConsecutiveRestarts action="terminate" value="30"/>
+              <timeout max="100000" default="-1"/>
+          </errorHandling>
+          <checkpoint batch="10000" time="1000ms"/>
+          <configurationParameterSettings>
+              <nameValuePair>
+                  <name>outputDir</name>
+                  <value>
+                      <string>C:\temp\MedNotes\output_cTakes_xml</string>
+                  </value>
+              </nameValuePair>
+          </configurationParameterSettings>
+      </casProcessor>
     </casProcessors>
     <cpeConfig>
         <numToProcess>-1</numToProcess>
