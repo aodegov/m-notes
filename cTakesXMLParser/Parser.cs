@@ -157,7 +157,7 @@ namespace cTakesXMLParser
                                                              ;
 
 
-                                        // fill dynamic list
+                                        // fill dynamic list //
                                         lst_SNOMED_Codes.Add(new
                                         {
                                             snomed_code = currCode,
