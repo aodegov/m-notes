@@ -1,5 +1,5 @@
-cTakesXMLParser
-===============
+Apache cTakes parser
+====================
 
 ## Prerequiresites
 - cTakes binaries (http://apache.ip-connect.vn.ua//ctakes/ctakes-4.0.0/apache-ctakes-4.0.0-bin.zip)
