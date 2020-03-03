@@ -2,8 +2,8 @@ Med Notes web app
 =====================
 ## Prerequiresites
 
-ASP.NET MVC Framework
-MSSQL Server
+- ASP.NET MVC Framework
+- MSSQL Server
 
 Apache cTakes parser
 =====================
