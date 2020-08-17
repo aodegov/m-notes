@@ -4,7 +4,7 @@ Med Notes web app
 
 - ASP.NET MVC Framework
 - MSSQL Server
-- Apache cTakes
+- Apache cTAKES
 
 Apache cTakes parser
 =====================
